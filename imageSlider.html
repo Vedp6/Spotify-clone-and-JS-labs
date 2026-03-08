@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+      }
+      .slider {
+        text-align: center;
+      }
+      img {
+        width: 400px;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+      .buttons {
+        margin-top: 20px;
+      }
+      button {
+        padding: 8px 15px;
+        margin: 0 5px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: black;
+        color: white;
+      }
+      .counter {
+        margin-top: 10px;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slider">
+      <img id="sliderImage" src="https://picsum.photos/id/1015/400/250" />
+      <div class="buttons">
+        <button id="prevButton">Previous</button>
+        <button id="nextButton">Next</button>
+      </div>
+
+      <div class="counter" id="counter">1/4</div>
+    </div>
+    <script>
+      const images = [
+        "https://picsum.photos/id/1015/400/250",
+        "https://picsum.photos/id/1016/400/250",
+        "https://picsum.photos/id/1018/400/250",
+        "https://picsum.photos/id/1020/400/250",
+      ];
+      const sliderImage = document.getElementById("sliderImage");
+      const prevButton = document.getElementById("prevButton");
+      const nextButton = document.getElementById("nextButton");
+      const counter = document.getElementById("counter");
+
+      let currentIndex = 0;
+      function updateImage() {
+        sliderImage.src = images[currentIndex];
+        counter.textContent = [currentIndex + 1] + "/" + images.length;
+      }
+
+      nextButton.addEventListener("click", function () {
+        if (currentIndex < images.length - 1) {
+          currentIndex++;
+          updateImage();
+        }
+      });
+
+      prevButton.addEventListener("click", function () {
+        if (currentIndex > 0) {
+          currentIndex--;
+          updateImage();
+        }
+      });
+    </script>
+  </body>
+</html>
